@@ -1,0 +1,10 @@
+README.md
+setup.py
+src/books.egg-info/PKG-INFO
+src/books.egg-info/SOURCES.txt
+src/books.egg-info/dependency_links.txt
+src/books.egg-info/top_level.txt
+src/navigation/__init__.py
+src/navigation/navigation.py
+src/scraping/__init__.py
+src/scraping/extraction.py
