@@ -5,11 +5,6 @@ addons:
     packages:
       - chromium-chromedriver
 
-before_script:
-  # include ChromeDriver in PATH
-  - ln --symbolic /usr/lib/chromium-browser/chromedriver "${HOME}/bin/chromedriver"
-  # start Chrome and listen on localhost
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 install:
   - pip install -e .
   - pip install codecov pytest-cov selenium bs4
