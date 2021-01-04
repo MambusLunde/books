@@ -15,7 +15,7 @@ def amazonSearch(search_term):
     
     driver.get(amazon)
     
-    Select(driver.find_element_by_id("searchDropdownBox")).select_by_visible_text("Books")
+    Select(driver.find_element_by_id("searchDropdownBox")).select_by_value("search-alias=stripbooks")
     
     driver.find_element_by_id("twotabsearchtextbox").send_keys(search_term)
     driver.find_element_by_id("nav-search-submit-button").click()
