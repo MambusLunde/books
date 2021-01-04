@@ -16,7 +16,7 @@ def amazonSearch(search_term):
 
     return driver
 
-## This will be made fancier than just choose first result
+## This will eventually be made fancier than just choose first result
 def chooseResult(driver, search_term):
     driver.find_element_by_xpath("//a[@class='a-link-normal a-text-normal']").click()
 
