@@ -1,4 +1,5 @@
 import selenium
+import time
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
@@ -15,6 +16,8 @@ def amazonSearch(search_term):
     
     driver.get(amazon)
     
+    time.sleep(3)
+
     Select(driver.find_element_by_id("searchDropdownBox")).select_by_value("search-alias=stripbooks")
     
     driver.find_element_by_id("twotabsearchtextbox").send_keys(search_term)
