@@ -10,7 +10,7 @@ driver = webdriver.Chrome()
 driver.get(amazon)
 
 # Specify that we're searching for books
-Select(driver.find_element_by_id("searchDropdownBox")).select_by_visible_text("Books")
+Select(driver.find_element_by_id("searchDropdownBox")).select_by_value("search-alias=stripbooks")
 
 # Insert the title of the book in the searchfield
 driver.find_element_by_id("twotabsearchtextbox").send_keys("Stiletto")
