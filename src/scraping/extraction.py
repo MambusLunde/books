@@ -1,5 +1,7 @@
+import selenium
 import requests
 import re
+import bs4
 from bs4 import BeautifulSoup
 
 def truncateURL(URL):
