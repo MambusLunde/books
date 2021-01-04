@@ -4,7 +4,8 @@ src/books.egg-info/PKG-INFO
 src/books.egg-info/SOURCES.txt
 src/books.egg-info/dependency_links.txt
 src/books.egg-info/top_level.txt
-src/navigation/__init__.py
-src/navigation/navigation.py
+src/navigate/__init__.py
+src/navigate/navigation.py
+src/navigate/scratchpad.py
 src/scraping/__init__.py
 src/scraping/extraction.py
