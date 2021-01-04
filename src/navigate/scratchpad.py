@@ -5,7 +5,6 @@ from selenium.webdriver.support.ui import Select
 amazon = "https://www.amazon.com"
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(chrome_options=chrome_options)
 
 # Go to the amazon webpage
