@@ -4,8 +4,7 @@ from selenium.webdriver.support.ui import Select
 
 amazon = "https://www.amazon.com"
 
-chrome_options = webdriver.ChromeOptions()
-driver = webdriver.Chrome(chrome_options=chrome_options)
+driver = webdriver.Chrome()
 
 # Go to the amazon webpage
 driver.get(amazon)
