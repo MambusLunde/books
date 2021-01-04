@@ -2,9 +2,6 @@ import selenium
 import time
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 def amazonSearch(search_term):
     
@@ -17,10 +14,7 @@ def amazonSearch(search_term):
     chrome_options.add_argument('--disable-gpu')
     driver = webdriver.Chrome(chrome_options=chrome_options)
     
-    driver.get(amazon)
-
-    WebDriverWait(driver,10).until(EC.presence_of_element_located((By.ID, "searchDropdownBox")))
-    
+    driver.get(amazon)    
 
     Select(driver.find_element_by_id("searchDropdownBox")).select_by_value("search-alias=stripbooks")
     
