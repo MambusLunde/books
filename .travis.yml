@@ -1,7 +1,7 @@
 language: python
 install:
   - pip install -e .
-  - pip install codecov pytest-cov
+  - pip install codecov pytest-cov selenium bs4
 script:
   - pytest --cov=src tests
 after_success:
