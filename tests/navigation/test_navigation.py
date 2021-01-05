@@ -14,7 +14,7 @@ class TestAmazonSearch(object):
 class TestChooseResult(object):
     def test_the_data_loom(self):
         search_term = "The Data Loom"
-        driver = chooseResult(amazonSearch(search_term), search_term)
+        url = chooseResult(amazonSearch(search_term), search_term)
         expected_url = "https://www.amazon.com/dp/1938377117" 
-        actual_url = truncateURL(driver.current_url)
+        actual_url = truncateURL(url)
         assert actual_url == expected_url, f"Expected: {expected_url}, Actual {actual_url}"

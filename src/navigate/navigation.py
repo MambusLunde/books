@@ -2,6 +2,8 @@ import selenium
 import time
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+import Levenshtein.StringMatcher
+from Levenshtein.StringMatcher import ratio
 
 def amazonSearch(search_term):
     
@@ -25,6 +27,34 @@ def amazonSearch(search_term):
 
 ## This will eventually be made fancier than just choose first result
 def chooseResult(driver, search_term):
-    driver.find_element_by_xpath("//a[@class='a-link-normal a-text-normal']").click()
+    
 
-    return driver
+    cand_list = []
+
+    for index in range(0,21):
+        try:
+            title = driver.find_element_by_xpath(f"//div[@data-index='{str(index)}']//span[@class='a-size-medium a-color-base a-text-normal']").text
+        except:
+            title = '.....................................'
+        try:
+            author = driver.find_element_by_xpath(f"//div[@data-index='{str(index)}']//a[@class='a-size-base a-link-normal']").text
+        except:
+            try:
+                author = driver.find_element_by_xpath(f"//div[@data-index='{str(index)}']//span[@class='a-size-base'][2]").text
+            except:
+                author = '.....................................'
+        try:
+            title = title.split(':')[0]
+        except:
+            pass
+
+        to_match = title + ' ' + author
+        lev_ratio = ratio(str.lower(search_term), str.lower(to_match))
+        cand_list.append(lev_ratio)
+
+    most_likely = cand_list.index(max(cand_list))
+
+    driver.find_element_by_xpath(f"//div[@data-index='{str(most_likely)}']//a[@class='a-link-normal a-text-normal']").click()
+    url = driver.current_url
+
+    return url
