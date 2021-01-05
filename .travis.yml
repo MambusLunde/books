@@ -7,7 +7,7 @@ addons:
 
 install:
   - pip install -e .
-  - pip install codecov pytest-cov selenium bs4 python-levenshtein
+  - pip install codecov pytest-cov selenium bs4 python-Levenshtein
 script:
   - pytest --cov=src tests
 after_success:
