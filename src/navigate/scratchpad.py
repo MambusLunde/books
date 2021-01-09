@@ -4,8 +4,12 @@ from Levenshtein.StringMatcher import ratio
 
 
 amazon = "https://www.amazon.com"
+searchTerm = "the data loom"
 
-driver = webdriver.Chrome()
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--window-size=1420,1080')
+
+driver = webdriver.Chrome(options=chrome_options)
 
 # Go to the amazon webpage
 driver.get(amazon)
@@ -14,7 +18,7 @@ driver.get(amazon)
 Select(driver.find_element_by_id("searchDropdownBox")).select_by_value("search-alias=stripbooks")
 
 # Insert the title of the book in the searchfield
-driver.find_element_by_id("twotabsearchtextbox").send_keys("The Data Loom")
+driver.find_element_by_id("twotabsearchtextbox").send_keys(searchTerm)
 
 # Click the search button
 driver.find_element_by_id("nav-search-submit-button").click()
@@ -28,24 +32,31 @@ author = driver.find_element_by_xpath("//div[@data-index='1']//a[@class='a-size-
 cand_list = []
 
 for index in range(0,21):
-    title = driver.find_element_by_xpath(f"//div[@data-index='{str(index)}']//span[@class='a-size-medium a-color-base a-text-normal']").text
-    
+    try:
+        title = driver.find_element_by_xpath(f"//div[@data-index='{str(index)}']//span[@class='a-size-medium a-color-base a-text-normal']").text
+    except:
+        title = '.....................................'
     try:
         author = driver.find_element_by_xpath(f"//div[@data-index='{str(index)}']//a[@class='a-size-base a-link-normal']").text
     except:
-        author = driver.find_element_by_xpath(f"//div[@data-index='{str(index)}']//span[@class='a-size-base'][2]").text
+        try:
+            author = driver.find_element_by_xpath(f"//div[@data-index='{str(index)}']//span[@class='a-size-base'][2]").text
+        except:
+            author = '.....................................'
     try:
         title = title.split(':')[0]
     except:
         pass
     to_match = title + ' ' + author
     
-    print(index, title, author)
-    lev_ratio = ratio(str.lower("The data loom"), str.lower(to_match))
+    lev_ratio = ratio(str.lower(searchTerm), str.lower(to_match))
     cand_list.append(lev_ratio)
 
 most_likely = cand_list.index(max(cand_list))
 driver.find_element_by_xpath(f"//div[@data-index='{str(most_likely)}']//a[@class='a-link-normal a-text-normal']").click()
 
-
-print(cand_list)
+try:
+    image = driver.find_element_by_xpath('//div[@id="main-image-container"]//img').get_attribute('src')
+except Exception:
+    image = driver.find_element_by_id("main-image").get_attribute('src')
+print(image)
