@@ -17,7 +17,7 @@ def amazon_driver():
     driver = webdriver.Chrome(options=chrome_options)
     
     driver.get(amazon) 
-    
+
     return driver
 
 def amazon_search(driver, search_term):   
@@ -46,11 +46,9 @@ def choose_result(driver, search_term):
                 author = driver.find_element_by_xpath(f"//div[@data-index='{str(index)}']//span[@class='a-size-base'][2]").text
             except Exception:
                 author = '.....................................'
-        try:
-            title = title.split(':')[0]
-        except Exception:
-            pass
-
+        
+        title = title.split(':')[0]
+        
         to_match = title + ' ' + author
         lev_ratio = ratio(str.lower(search_term), str.lower(to_match))
         cand_list.append(lev_ratio)

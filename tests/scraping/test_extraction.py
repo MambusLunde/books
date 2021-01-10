@@ -37,6 +37,16 @@ class TestExtractTitle(object):
         assert actual_title == expected_title, f"Expected: {expected_title}, Actual: {actual_title}"
         assert actual_subtitle == expected_subtitle, f"Expected: {expected_subtitle}, Actual: {actual_subtitle}"
 
+    def test_ThinkingFastAndSlow(self):
+        search_term = "Thinking, Fast and Slow"
+        expected_title = search_term
+        driver = amazon_driver()
+        expected_subtitle = ''
+        actual_title, actual_subtitle = extract_title(choose_result(amazon_search(driver, search_term), search_term))
+        driver.quit()
+        assert actual_title == expected_title, f"Expected: {expected_title}, Actual: {actual_title}"
+        assert actual_subtitle == expected_subtitle, f"Expected: {expected_subtitle}, Actual: {actual_subtitle}"
+
 class TestExtractAuthor(object):
     def test_DataLoom(self):
         search_term = "The Data Loom"

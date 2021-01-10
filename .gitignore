@@ -1,3 +1,6 @@
 
 debug.log
 scratchpad.py
+src/scraping/__pycache__/extraction.cpython-37.pyc
+src/scraping/__pycache__/__init__.cpython-37.pyc
+*.pyc
