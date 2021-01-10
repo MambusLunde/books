@@ -6,7 +6,7 @@ from scraping.extraction import truncate_url
 class TestAmazonDriver(object):
     def test_if_working(self):
         expected_url = "https://www.amazon.com/"
-        actual_url = amazon_driver()
+        actual_url = amazon_driver().current_url
         assert actual_url == expected_url, f"Expected: {expected_url}, Actual {actual_url}"
 
 
